@@ -55,5 +55,7 @@ class WordListView(MethodView):
 
 word_list_view = WordListView.as_view("word_list_view")
 app.add_url_rule("/", view_func=word_list_view, methods=["POST"])
+
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port="5000", debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
