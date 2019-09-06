@@ -20,7 +20,7 @@ def clean_text(text, ngrams_number: int = None):
         filtered_words_list = set
 
         for word in text:
-            cleaned_word = set(ngrams(_text_cleaner(word), 2))
+            cleaned_word = set(ngrams(_text_cleaner(word), int(ngrams_number)))
             filtered_words_list = filtered_words_list.union(cleaned_word)
 
         filtered_unique_words_list = [" ".join(i) for i in filtered_words_list]
