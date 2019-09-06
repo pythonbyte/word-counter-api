@@ -13,6 +13,35 @@ class WordListView(MethodView):
     def post(self):
         text_data_dict = json.loads(request.data)
         ngrams_args = request.args.get("ngrams", None)
+        texts = text_data_dict.get("texts", None)
+
+        if texts is None:
+            return (
+                jsonify({"error": 'Key value error. Ensure that the key is "texts"'}),
+                400,
+            )
+
+        if not isinstance(texts, list):
+            return (
+                jsonify(
+                    {"error": "Input value not supported. Only lists are supported."}
+                ),
+                400,
+            )
+
+        if len(texts) == 0:
+            return (jsonify({"error": "Provide a valid list. Empty list found."}), 400)
+
+        if not isinstance(texts[0], str):
+            return (
+                jsonify(
+                    {
+                        "error": "Provide a valid value inside the list. Type found not string."
+                    }
+                ),
+                400,
+            )
+
         phrases_list, unique_word_list = clean_text(
             text_data_dict["texts"], ngrams_args
         )
