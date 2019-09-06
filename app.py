@@ -12,11 +12,11 @@ app = Flask(__name__)
 class WordListView(MethodView):
     def post(self):
         text_data_dict = json.loads(request.data)
-        ngrams_args = request.args.get('ngrams', None)
-        phrases_list, unique_word_list = clean_text(text_data_dict["texts"], ngrams_args)
+        ngrams_args = request.args.get("ngrams", None)
+        phrases_list, unique_word_list = clean_text(
+            text_data_dict["texts"], ngrams_args
+        )
         word_counter = {}
-        import pdb
-        pdb.set_trace()
         for index, phrase in enumerate(phrases_list):
             word_counter[index] = [phrase.count(word) for word in unique_word_list]
 
