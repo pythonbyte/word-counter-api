@@ -2,7 +2,6 @@
 
 Flask API that filters texts into word vectors filtered by the occurrence of unique words inside the text. The program will clean the input text, removing punctuation, strings that begin with number and remove stop words. The app is alphabetically ordered.
 
-Deployed app at: https://wordvector.herokuapp.com/
 
 <b>POST</b> is the only method allowed.
 
